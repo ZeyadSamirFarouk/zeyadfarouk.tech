@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07070b;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --accent: #b892ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(184, 146, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.1), transparent 30%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+a {
+  color: inherit;
+}
+
+main {
+  width: 100%;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: -20% 30% auto -30%;
+  height: 14rem;
+  background: radial-gradient(circle, rgba(184, 146, 255, 0.36), transparent 65%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.project-cover {
+  height: 12rem;
+  background:
+    linear-gradient(150deg, rgba(184, 146, 255, 0.33), rgba(58, 58, 86, 0.18) 40%, rgba(255, 255, 255, 0.05)),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 2px,
+      transparent 2px,
+      transparent 7px
+    );
+  position: relative;
+}
+
+.project-glow {
+  position: absolute;
+  inset: auto -20% -30% auto;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(184, 146, 255, 0.42), transparent 65%);
+  filter: blur(8px);
+  opacity: 0.8;
+  transition: transform 300ms ease;
+}
+
+.group:hover .project-glow {
+  transform: scale(1.1);
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 9999px;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 260ms ease;
+}
+
+.btn-primary {
+  border: 1px solid rgba(184, 146, 255, 0.8);
+  background: linear-gradient(135deg, rgba(184, 146, 255, 0.88), rgba(147, 112, 219, 0.92));
+  color: #0b0812;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(184, 146, 255, 0.35);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f4f4f5;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(184, 146, 255, 0.8);
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(14, 14, 20, 0.9);
+  padding: 0.65rem 0.8rem;
+  color: #f4f4f5;
+  outline: none;
+}
+
+.input:focus-visible {
+  border-color: rgba(184, 146, 255, 0.85);
+  box-shadow: 0 0 0 3px rgba(184, 146, 255, 0.2);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(8%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
